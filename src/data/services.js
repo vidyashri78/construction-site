@@ -1,0 +1,58 @@
+export const services = [
+  {
+    id: 1,
+    icon: '🏠',
+    title: 'Residential Construction',
+    description: 'Custom homes, condominiums, and multi-family housing built with precision and care from foundation to finishing.',
+    features: ['Custom Home Design', 'Foundation & Framing', 'Turnkey Delivery'],
+  },
+  {
+    id: 2,
+    icon: '🏢',
+    title: 'Commercial Construction',
+    description: 'Office buildings, retail spaces, and industrial facilities engineered for performance, aesthetics, and longevity.',
+    features: ['Office & Retail Spaces', 'Industrial Facilities', 'LEED Certification'],
+  },
+  {
+    id: 3,
+    icon: '🔨',
+    title: 'Renovation & Remodeling',
+    description: 'Breathe new life into existing structures with our comprehensive renovation, restoration, and remodeling services.',
+    features: ['Structural Upgrades', 'Full Gut Renovations', 'Historic Restoration'],
+  },
+  {
+    id: 4,
+    icon: '🎨',
+    title: 'Interior Design',
+    description: 'End-to-end interior design services that transform spaces into functional, beautiful environments aligned with your brand.',
+    features: ['Space Planning', 'Material Selection', '3D Visualization'],
+  },
+  {
+    id: 5,
+    icon: '🏗️',
+    title: 'Project Management',
+    description: 'Dedicated project managers ensuring on-time, on-budget delivery with transparent reporting and proactive communication.',
+    features: ['Scheduling & Budgeting', 'Contractor Coordination', 'Quality Assurance'],
+  },
+  {
+    id: 6,
+    icon: '🌿',
+    title: 'Green Building',
+    description: 'Sustainable construction practices using eco-friendly materials and energy-efficient technologies for a better tomorrow.',
+    features: ['Solar Integration', 'Green Certifications', 'Low-Carbon Materials'],
+  },
+  {
+    id: 7,
+    icon: '🏚️',
+    title: 'Demolition Services',
+    description: 'Safe, efficient, and environmentally responsible demolition with full site clearance and material recycling programs.',
+    features: ['Structural Demolition', 'Site Clearance', 'Material Recycling'],
+  },
+  {
+    id: 8,
+    icon: '📐',
+    title: 'Architectural Design',
+    description: 'In-house architects delivering innovative, code-compliant designs that balance aesthetics with structural integrity.',
+    features: ['Concept Design', 'Engineering Drawings', 'Permit Acquisition'],
+  },
+]

@@ -1,0 +1,61 @@
+.projects-section {
+  padding: 80px 0;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 2px solid #E8E8E8;
+  background: #fff;
+  color: #616161;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-btn:hover {
+  border-color: #1E1E1E;
+  color: #1E1E1E;
+}
+
+.filter-btn.active {
+  background: #1E1E1E;
+  border-color: #1E1E1E;
+  color: #fff;
+}
+
+.filter-count {
+  background: #F4B400;
+  color: #1E1E1E;
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 1024px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
