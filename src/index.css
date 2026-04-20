@@ -1,0 +1,55 @@
+/* Remove default browser spacing */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Full height layout */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content fills space */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent extra scroll at bottom */
+main > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Smooth scroll behavior */
+body {
+  overscroll-behavior: none;
+}
+
+/* Remove default spacing */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+  overflow-x: hidden;
+}
+
+/* Only ONE scroll (on body) */
+body {
+  overflow-y: auto;
+}
+
+/* Root layout */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content expands */
+main {
+  flex: 1;
+}

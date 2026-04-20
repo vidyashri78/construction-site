@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;500;600&display=swap');
 
+/* ─── RESET ─────────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ─── TOKENS ─────────────────────────────────────────────────────── */
 :root {
   --primary: #1E1E1E;
   --accent: #F4B400;
@@ -22,8 +24,11 @@
   --transition: 0.3s ease;
 }
 
+/* ─── HTML / BODY / ROOT — full-width, no side-bleed ────────────── */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;          /* kill horizontal scroll at root */
+  width: 100%;
 }
 
 body {
@@ -32,8 +37,21 @@ body {
   color: var(--primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  margin: 0;                   /* remove browser default */
+  padding: 0;
+  overflow-x: hidden;          /* belt-and-suspenders */
+  width: 100%;
+  min-width: 0;
 }
 
+/* React mount point */
+#root {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -45,7 +63,8 @@ a {
   color: inherit;
 }
 
-img {
+/* ─── MEDIA — never overflow their container ─────────────────────── */
+img, video, iframe, embed, object {
   max-width: 100%;
   display: block;
 }
@@ -56,12 +75,27 @@ button {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* ─── CONTAINER ───────────────────────────────────────────────────── */
+/*  Uses width:100% so it never adds to document width,
+    max-width caps the reading measure, horizontal padding
+    is kept inside via padding (not margin that can cause overflow). */
 .container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ─── SECTION HELPERS ─────────────────────────────────────────────── */
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 900;
@@ -71,10 +105,11 @@ button {
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--gray-600);
   max-width: 560px;
   margin-bottom: 48px;
+  line-height: 1.7;
 }
 
 .accent-line {
@@ -84,19 +119,24 @@ button {
   margin-bottom: 20px;
 }
 
+/* ─── BUTTONS ─────────────────────────────────────────────────────── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: var(--accent);
   color: var(--primary);
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   padding: 14px 32px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   transition: all var(--transition);
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -111,25 +151,30 @@ button {
   gap: 8px;
   background: transparent;
   color: var(--secondary);
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   padding: 13px 31px;
-  border: 2px solid var(--secondary);
+  border: 2px solid rgba(255,255,255,0.5);
   letter-spacing: 0.5px;
   text-transform: uppercase;
   transition: all var(--transition);
+  white-space: nowrap;
 }
 
 .btn-outline:hover {
-  background: var(--secondary);
-  color: var(--primary);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(244,180,0,0.06);
 }
 
+/* ─── PAGE HERO (Contact, Team, Projects, WhyUs) ──────────────────── */
 .page-hero {
   background: var(--primary);
   padding: 120px 0 80px;
   position: relative;
   overflow: hidden;
+  width: 100%;                 /* always full bleed */
 }
 
 .page-hero::before {
@@ -143,6 +188,7 @@ button {
     rgba(244,180,0,0.03) 40px,
     rgba(244,180,0,0.03) 80px
   );
+  pointer-events: none;
 }
 
 .page-hero .container {
@@ -164,11 +210,13 @@ button {
 
 .page-hero p {
   color: var(--gray-400);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-top: 16px;
   max-width: 500px;
+  line-height: 1.7;
 }
 
+/* ─── GRID HELPERS ────────────────────────────────────────────────── */
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -192,7 +240,7 @@ button {
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .grid-4 { grid-template-columns: 1fr; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-2 { grid-template-columns: 1fr; }

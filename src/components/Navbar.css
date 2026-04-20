@@ -1,100 +1,107 @@
+/* src/components/Navbar.css */
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;                      /* never wider than viewport */
   z-index: 1000;
-  padding: 24px 0;
+  padding: 22px 0;
   transition: all 0.3s ease;
   background: transparent;
 }
 
 .navbar.scrolled {
-  background: rgba(30, 30, 30, 0.97);
-  padding: 14px 0;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  background: rgba(20, 20, 20, 0.97);
+  padding: 13px 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
 }
 
+/* ── INNER ── */
 .navbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Do NOT add extra padding here — .container already handles it */
 }
 
+/* ── LOGO ── */
 .navbar-logo {
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #fff;
   letter-spacing: 2px;
   text-decoration: none;
+  flex-shrink: 0;                   /* don't compress logo */
 }
 
 .logo-icon {
   color: #F4B400;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   line-height: 1;
 }
 
-.navbar-logo .accent {
-  color: #F4B400;
-}
+.navbar-logo .accent { color: #F4B400; }
 
+/* ── NAV LINKS (desktop) ── */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .nav-link {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.8);
-  padding: 8px 14px;
+  padding: 8px 13px;
   position: relative;
   transition: color 0.3s;
+  white-space: nowrap;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 14px;
-  right: 14px;
+  bottom: 2px;
+  left: 13px;
+  right: 13px;
   height: 2px;
   background: #F4B400;
   transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.3s ease;
 }
 
 .nav-link:hover,
-.nav-link.active {
-  color: #fff;
-}
+.nav-link.active { color: #fff; }
 
 .nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
-}
+.nav-link.active::after { transform: scaleX(1); }
 
+/* ── CTA BUTTON ── */
 .nav-cta {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   background: #F4B400;
   color: #1E1E1E;
-  padding: 10px 22px;
-  margin-left: 12px;
+  padding: 10px 20px;
+  margin-left: 10px;
   transition: all 0.3s;
+  white-space: nowrap;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
@@ -103,14 +110,18 @@
   transform: translateY(-1px);
 }
 
+/* ── HAMBURGER ── */
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px 4px;
+  flex-shrink: 0;
+  z-index: 1100;
 }
 
 .hamburger span {
@@ -118,30 +129,34 @@
   width: 26px;
   height: 2px;
   background: #fff;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   transform-origin: center;
 }
 
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ── MOBILE MENU ── */
 @media (max-width: 900px) {
   .hamburger { display: flex; }
 
   .navbar-links {
+    /* Slide-in drawer from right */
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
-    height: 100vh;
+    width: min(300px, 80vw);          /* never wider than viewport */
+    height: 100dvh;
     background: #1E1E1E;
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px 32px 40px;
+    padding: 96px 28px 40px;
     gap: 0;
-    transition: right 0.35s ease;
-    box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.45);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .navbar-links.open { right: 0; }
@@ -149,7 +164,7 @@
   .nav-link {
     width: 100%;
     padding: 14px 0;
-    font-size: 1rem;
+    font-size: 0.98rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
 
@@ -157,9 +172,9 @@
 
   .nav-cta {
     margin-left: 0;
-    margin-top: 24px;
+    margin-top: 28px;
     width: 100%;
     text-align: center;
-    padding: 14px 22px;
+    padding: 14px 20px;
   }
 }
